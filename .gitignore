@@ -2,18 +2,23 @@
 # Dependencies
 node_modules/
 
-# Environment
+# Environment variables
 .env
 .env.local
 *.env.*
 
-# Logs and temp files
+# Logs
 *.log
-*.tmp
 
-# Editors
-.vscode/
-.idea/
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
 
 # Python
 __pycache__/
@@ -24,38 +29,45 @@ __pycache__/
 env/
 venv/
 .venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-.ipynb_checkpoints
-.pytest_cache/
+.venv-local/
+.venv3/
+.venv3-local/
+.python-version
 .mypy_cache/
+.pytest_cache/
+.tox/
+.coverage.xml
+htmlcov/
+.coverage.*
+.nox/
+.pyre/
+.pytype/
+.pytest_cache/
 .hypothesis/
 
-# Build artifacts
-dist/
-build/
-*.egg
-*.egg-info/
-.eggs/
-.installed.cfg
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.whl
-share/python-wheels/
-.Python
-include/site/python*/
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.cjs
+.pnp.loader.mjs
+.next/
+.nuxt/
+.vuepress/dist/
+.cache/
+.temp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
 
 # Compressed files
 *.zip
@@ -81,7 +93,30 @@ include/site/python*/
 *.tar.xz
 *.tar.zst
 
-# System files
-.DS_Store
-Thumbs.db
+# Build outputs
+target/
+.gradle/
+*.class
+*.jar
+*.war
+*.ear
+*.so
+*.dll
+*.exe
+*.out
+*.a
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Verbose logging
+*.log.*
+
+# Local configuration
+config/local.*
+config/development.*
+config/staging.*
 ```
