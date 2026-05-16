@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MWASE AI AGENT</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>MWASE AI</span>
+                </div>
+                <h2>Welcome Back</h2>
+                <p>Login to access your dashboard</p>
+            </div>
+
+            <% if (error) { %>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <form class="login-form" action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" required placeholder="Enter username or email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required placeholder="Enter password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p><a href="/">← Back to Homepage</a></p>
+            </div>
+        </div>
+
+        <div class="login-info">
+            <h3>MWASE AI AGENT</h3>
+            <p>Your Premium AI Generation Platform</p>
+            <ul>
+                <li><i class="fas fa-check"></i> Image Generation</li>
+                <li><i class="fas fa-check"></i> Video Creation</li>
+                <li><i class="fas fa-check"></i> Voice Synthesis</li>
+                <li><i class="fas fa-check"></i> 3D Content</li>
+                <li><i class="fas fa-check"></i> Video Editing</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
