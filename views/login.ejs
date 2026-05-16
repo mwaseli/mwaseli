@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-robot"></i>
+                <h1>MWASE AI AGENT</h1>
+                <p>Admin Dashboard Login</p>
+            </div>
+
+            <% if (error) { %>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <form action="/login" method="POST" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Enter username or email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email (Optional)</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login to Dashboard
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Don't have an account? <a href="/">Go Home</a></p>
+                <p class="demo-credentials">
+                    <small>Demo: mwaseli / Mwaseli1</small>
+                </p>
+            </div>
+        </div>
+
+        <div class="login-features">
+            <h3>Platform Features</h3>
+            <ul>
+                <li><i class="fas fa-check"></i> Image to Image Generation</li>
+                <li><i class="fas fa-check"></i> Video to Video Transformation</li>
+                <li><i class="fas fa-check"></i> Text to Video (up to 50 min)</li>
+                <li><i class="fas fa-check"></i> Text to Image Creation</li>
+                <li><i class="fas fa-check"></i> Text to Voice Synthesis</li>
+                <li><i class="fas fa-check"></i> 3D HD Quality Output</li>
+                <li><i class="fas fa-check"></i> Advanced Video Editing</li>
+                <li><i class="fas fa-check"></i> Multi-Format Support</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
