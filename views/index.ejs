@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>MWASE AI AGENT</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <% if (user) { %>
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li><a href="/logout" class="btn-logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/login" class="btn-login">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>MWASE AI AGENT</h1>
+                <h2>Image and Video Generator</h2>
+                <p class="tagline">Transform your ideas into stunning visuals with advanced AI technology</p>
+                <div class="hero-buttons">
+                    <a href="/login" class="btn btn-primary">Get Started</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class="fas fa-image"></i>
+                    <span>Text to Image</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-video"></i>
+                    <span>Text to Video</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-microphone"></i>
+                    <span>Text to Voice</span>
+                </div>
+                <div class="floating-card card-4">
+                    <i class="fas fa-cube"></i>
+                    <span>3D HD</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Advanced Features</h2>
+            <p class="section-subtitle">Everything you need to create professional content</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3>Image to Image</h3>
+                    <p>Transform existing images with AI-powered enhancements and style transfers</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Video to Video</h3>
+                    <p>Apply advanced AI effects and transformations to your videos</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Text to Video</h3>
+                    <p>Generate stunning videos up to 50 minutes from text descriptions</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Text to Image</h3>
+                    <p>Create breathtaking images from simple text prompts</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Text to Voice</h3>
+                    <p>Generate natural-sounding voiceovers in multiple languages</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>3D HD Generation</h3>
+                    <p>Create professional 3D content in various quality levels</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Video Editing</h3>
+                    <p>Advanced editing tools powered by AI for professional results</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Multi-Format Support</h3>
+                    <p>Support for all major video and image formats</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality-section">
+        <div class="container">
+            <h2 class="section-title">Professional Quality</h2>
+            <div class="quality-grid">
+                <div class="quality-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>HD Quality</span>
+                </div>
+                <div class="quality-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>4K Ultra HD</span>
+                </div>
+                <div class="quality-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>8K Resolution</span>
+                </div>
+                <div class="quality-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>3D Rendering</span>
+                </div>
+                <div class="quality-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>60 FPS</span>
+                </div>
+                <div class="quality-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>HDR Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>MWASE AI AGENT</h3>
+                    <p>Professional AI-powered content generation platform</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/admin">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> mwaserobison@gmail.com</p>
+                    <p><i class="fas fa-globe"></i> mwaseai.io</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MWASE AI AGENT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

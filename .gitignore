@@ -1,0 +1,19 @@
+```
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+server.log
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# IDE
+.vscode/
+
+# Cookies file
+cookies.txt
+```

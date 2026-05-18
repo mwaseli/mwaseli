@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <nav class="admin-navbar">
+        <div class="container">
+            <div class="admin-logo">
+                <i class="fas fa-robot"></i>
+                <span>MWASE AI AGENT</span>
+            </div>
+            <div class="admin-nav-links">
+                <a href="/"><i class="fas fa-home"></i> Home</a>
+                <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h3><%= user.username %></h3>
+                <p><%= user.email %></p>
+                <span class="badge badge-admin"><%= user.role %></span>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="active">
+                    <a href="#dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#generations">
+                        <i class="fas fa-magic"></i>
+                        Generations
+                    </a>
+                </li>
+                <li>
+                    <a href="#image-tools">
+                        <i class="fas fa-image"></i>
+                        Image Tools
+                    </a>
+                </li>
+                <li>
+                    <a href="#video-tools">
+                        <i class="fas fa-video"></i>
+                        Video Tools
+                    </a>
+                </li>
+                <li>
+                    <a href="#voice-tools">
+                        <i class="fas fa-microphone"></i>
+                        Voice Tools
+                    </a>
+                </li>
+                <li>
+                    <a href="#settings">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="admin-content">
+            <div class="content-header">
+                <h1>Admin Dashboard</h1>
+                <p>Welcome back, <%= user.username %>!</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon stat-total">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.totalGenerations %></h3>
+                        <p>Total Generations</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-images">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.images %></h3>
+                        <p>Images Generated</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-videos">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.videos %></h3>
+                        <p>Videos Generated</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon stat-voices">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.voices %></h3>
+                        <p>Voice Clips</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="action-btn" onclick="showGenerationForm('text-to-image')">
+                        <i class="fas fa-image"></i>
+                        <span>Text to Image</span>
+                    </button>
+                    <button class="action-btn" onclick="showGenerationForm('text-to-video')">
+                        <i class="fas fa-video"></i>
+                        <span>Text to Video</span>
+                    </button>
+                    <button class="action-btn" onclick="showGenerationForm('image-to-image')">
+                        <i class="fas fa-images"></i>
+                        <span>Image to Image</span>
+                    </button>
+                    <button class="action-btn" onclick="showGenerationForm('video-to-video')">
+                        <i class="fas fa-film"></i>
+                        <span>Video to Video</span>
+                    </button>
+                    <button class="action-btn" onclick="showGenerationForm('text-to-voice')">
+                        <i class="fas fa-microphone-alt"></i>
+                        <span>Text to Voice</span>
+                    </button>
+                    <button class="action-btn" onclick="showGenerationForm('video-edit')">
+                        <i class="fas fa-edit"></i>
+                        <span>Edit Video</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Generation Form Modal -->
+            <div id="generationModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modalTitle">Generate Content</h2>
+                        <button class="close-btn" onclick="closeModal()">&times;</button>
+                    </div>
+                    <form id="generationForm" class="generation-form">
+                        <div id="formFields"></div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-magic"></i>
+                            Generate
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Recent Generations -->
+            <div class="recent-generations">
+                <h2>Recent Generations</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Quality</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="generationsTable">
+                            <% if (recentGenerations.length > 0) { %>
+                                <% recentGenerations.forEach(gen => { %>
+                                    <tr>
+                                        <td>
+                                            <i class="fas <%= getTypeIcon(gen.type) %>"></i>
+                                            <%= gen.type %>
+                                        </td>
+                                        <td><span class="badge badge-quality"><%= gen.quality %></span></td>
+                                        <td><span class="badge badge-success"><%= gen.status %></span></td>
+                                        <td><%= new Date(gen.createdAt).toLocaleDateString() %></td>
+                                        <td>
+                                            <button class="btn-icon" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn-icon btn-delete" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="5" class="no-data">
+                                        <i class="fas fa-inbox"></i>
+                                        <p>No generations yet. Start creating!</p>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quality Settings -->
+            <div class="quality-settings">
+                <h2>Quality Settings</h2>
+                <div class="settings-grid">
+                    <div class="setting-card">
+                        <h4><i class="fas fa-tv"></i> Video Quality</h4>
+                        <select class="quality-select">
+                            <option value="HD">HD (720p)</option>
+                            <option value="FHD">Full HD (1080p)</option>
+                            <option value="4K">4K Ultra HD</option>
+                            <option value="8K">8K Resolution</option>
+                        </select>
+                    </div>
+                    <div class="setting-card">
+                        <h4><i class="fas fa-image"></i> Image Resolution</h4>
+                        <select class="quality-select">
+                            <option value="1280x720">1280x720</option>
+                            <option value="1920x1080">1920x1080</option>
+                            <option value="3840x2160">4K (3840x2160)</option>
+                            <option value="7680x4320">8K (7680x4320)</option>
+                        </select>
+                    </div>
+                    <div class="setting-card">
+                        <h4><i class="fas fa-cube"></i> 3D Mode</h4>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-card">
+                        <h4><i class="fas fa-clock"></i> Max Duration</h4>
+                        <select class="quality-select">
+                            <option value="5">5 minutes</option>
+                            <option value="10">10 minutes</option>
+                            <option value="30">30 minutes</option>
+                            <option value="50" selected>50 minutes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>
