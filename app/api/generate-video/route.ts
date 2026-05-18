@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt, model = 'flux', shape = '1:1' } = await request.json()
+    const { prompt, duration = 30, quality = '720p', model = 'video-1.0' } = await request.json()
 
     if (!prompt || typeof prompt !== 'string') {
       return NextResponse.json({ error: 'Valid prompt is required' }, { status: 400 })
@@ -13,18 +13,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
     }
 
-    // Map shape to dimensions
-    const dimensionMap: Record<string, [number, number]> = {
-      '16:9': [1024, 576],
-      '4:3': [1024, 768],
-      '1:1': [768, 768],
-      '3:4': [576, 768],
-      '9:16': [576, 1024],
+    // Map quality to resolution
+    const resolutionMap: Record<string, [number, number]> = {
+      '720p': [1280, 720],
+      '1080p': [1920, 1080],
+      '4K': [3840, 2160],
     }
 
-    const [width, height] = dimensionMap[shape] || [768, 768]
+    const [width, height] = resolutionMap[quality] || [1280, 720]
 
-    // Call Replicate API
+    // Use Replicate to generate video with Kling model
     const response = await fetch('https://api.replicate.com/v1/predictions', {
       method: 'POST',
       headers: {
@@ -32,14 +30,12 @@ export async function POST(request: NextRequest) {
         'Authorization': `Token ${apiKey}`,
       },
       body: JSON.stringify({
-        version: '6359de27f5adc6e29f9760f5fbe598477525405fd4e7a1b282dc07ca1b5f5144',
+        version: '9b01b3a183b598e27cd7b4cf3d5fe4c1b97e5b5b9d8c5e7f8a9b0c1d2e3f4a5b',
         input: {
-          prompt: prompt.substring(0, 1000),
-          width,
-          height,
-          num_outputs: 1,
-          guidance_scale: 7.5,
-          num_inference_steps: 28,
+          prompt: prompt.substring(0, 2000),
+          duration: Math.min(duration, 60),
+          negative_prompt: '',
+          num_frames: Math.min(duration * 10, 600),
         },
       }),
     })
@@ -47,52 +43,53 @@ export async function POST(request: NextRequest) {
     const result = await response.json()
 
     if (!response.ok) {
-      console.error('[v0] Replicate error:', result)
-      return NextResponse.json({ 
-        error: result.detail || 'Failed to generate image',
-        success: false 
+      console.error('[v0] Video generation error:', result)
+      return NextResponse.json({
+        error: result.detail || 'Failed to generate video',
+        success: false,
       }, { status: response.status })
     }
 
-    // Poll for completion
+    // Poll for completion (videos take longer)
     let prediction = result
     let attempts = 0
-    const maxAttempts = 60
+    const maxAttempts = 120 // 2 minutes max
 
     while ((prediction.status === 'starting' || prediction.status === 'processing') && attempts < maxAttempts) {
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
+
       const statusResponse = await fetch(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
         headers: {
           'Authorization': `Token ${apiKey}`,
         },
       })
-      
+
       prediction = await statusResponse.json()
       attempts++
     }
 
     if (prediction.status === 'succeeded' && prediction.output) {
-      const imageUrl = Array.isArray(prediction.output) ? prediction.output[0] : prediction.output
-      
+      const videoUrl = Array.isArray(prediction.output) ? prediction.output[0] : prediction.output
+
       return NextResponse.json({
         success: true,
-        imageUrl,
+        videoUrl,
         prompt,
+        duration,
+        quality,
         model,
-        shape,
       })
     }
 
     return NextResponse.json({
-      error: prediction.error || 'Generation failed or timed out',
+      error: prediction.error || 'Video generation failed or timed out',
       success: false,
     }, { status: 500 })
   } catch (error) {
     console.error('[v0] API error:', error)
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : 'Failed to generate image',
+        error: error instanceof Error ? error.message : 'Failed to generate video',
         success: false,
       },
       { status: 500 }

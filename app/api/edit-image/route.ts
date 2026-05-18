@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const { prompt, model = 'flux', shape = '1:1' } = await request.json()
+    const { image, prompt, strength = 0.7 } = await request.json()
 
-    if (!prompt || typeof prompt !== 'string') {
-      return NextResponse.json({ error: 'Valid prompt is required' }, { status: 400 })
+    if (!image || !prompt) {
+      return NextResponse.json({ error: 'Image and prompt are required' }, { status: 400 })
     }
 
     const apiKey = process.env.REPLICATE_API_TOKEN
@@ -13,18 +13,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'API key not configured' }, { status: 500 })
     }
 
-    // Map shape to dimensions
-    const dimensionMap: Record<string, [number, number]> = {
-      '16:9': [1024, 576],
-      '4:3': [1024, 768],
-      '1:1': [768, 768],
-      '3:4': [576, 768],
-      '9:16': [576, 1024],
-    }
-
-    const [width, height] = dimensionMap[shape] || [768, 768]
-
-    // Call Replicate API
+    // Use Replicate for image-to-image editing
     const response = await fetch('https://api.replicate.com/v1/predictions', {
       method: 'POST',
       headers: {
@@ -32,12 +21,11 @@ export async function POST(request: NextRequest) {
         'Authorization': `Token ${apiKey}`,
       },
       body: JSON.stringify({
-        version: '6359de27f5adc6e29f9760f5fbe598477525405fd4e7a1b282dc07ca1b5f5144',
+        version: '15ab75e0bde51b65a61a2b2a1df711b348b4eb23c8ff21ec301de9d0e9944957',
         input: {
           prompt: prompt.substring(0, 1000),
-          width,
-          height,
-          num_outputs: 1,
+          image: image,
+          denoising: strength,
           guidance_scale: 7.5,
           num_inference_steps: 28,
         },
@@ -48,9 +36,9 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       console.error('[v0] Replicate error:', result)
-      return NextResponse.json({ 
-        error: result.detail || 'Failed to generate image',
-        success: false 
+      return NextResponse.json({
+        error: result.detail || 'Failed to edit image',
+        success: false,
       }, { status: response.status })
     }
 
@@ -61,38 +49,37 @@ export async function POST(request: NextRequest) {
 
     while ((prediction.status === 'starting' || prediction.status === 'processing') && attempts < maxAttempts) {
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
+
       const statusResponse = await fetch(`https://api.replicate.com/v1/predictions/${prediction.id}`, {
         headers: {
           'Authorization': `Token ${apiKey}`,
         },
       })
-      
+
       prediction = await statusResponse.json()
       attempts++
     }
 
     if (prediction.status === 'succeeded' && prediction.output) {
       const imageUrl = Array.isArray(prediction.output) ? prediction.output[0] : prediction.output
-      
+
       return NextResponse.json({
         success: true,
         imageUrl,
         prompt,
-        model,
-        shape,
+        strength,
       })
     }
 
     return NextResponse.json({
-      error: prediction.error || 'Generation failed or timed out',
+      error: prediction.error || 'Image editing failed or timed out',
       success: false,
     }, { status: 500 })
   } catch (error) {
     console.error('[v0] API error:', error)
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : 'Failed to generate image',
+        error: error instanceof Error ? error.message : 'Failed to edit image',
         success: false,
       },
       { status: 500 }
