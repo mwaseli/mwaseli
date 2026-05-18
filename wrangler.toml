@@ -1,0 +1,23 @@
+name = "mwase-ai"
+type = "javascript"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+
+[env.production]
+name = "mwase-ai-prod"
+workers_dev = false
+route = "mwaseai.com/*"
+zone_id = ""
+
+[build]
+command = "npm install && npm run build"
+cwd = "./public"
+
+[[build.upload]]
+format = "service-worker"
+main = "./index.js"
+
+[triggers]
+crons = ["0 0 * * *"]
