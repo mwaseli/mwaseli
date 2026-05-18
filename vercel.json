@@ -1,0 +1,54 @@
+{
+  "projectId": "prj_WugAxqwJ0VRqH08dep7HKw64cO8l",
+  "orgId": "team_WugAxqwJ0VRqH08dep7HKw64cO8l",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": [
+    "REPLICATE_API_TOKEN",
+    "OPENAI_API_KEY",
+    "HUGGINGFACE_API_KEY"
+  ],
+  "regions": [
+    "iad1",
+    "sfo1"
+  ],
+  "functions": {
+    "app/api/**": {
+      "maxDuration": 300
+    }
+  },
+  "redirects": [
+    {
+      "source": "/dashboard",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/admin",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/auth/:path*",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ]
+}
