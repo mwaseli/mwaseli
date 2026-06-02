@@ -1,0 +1,21 @@
+```
+# Dependencies
+node_modules/
+package-lock.json
+
+# Compiled/Generated files
+*.mq5
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment
+.env
+.env.local
+.env.
+
+# Editors
+.vscode/
+.idea/
+```
