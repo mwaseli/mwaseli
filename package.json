@@ -1,0 +1,37 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "- 👋 Hi, I’m @mwaseli - 👀 I’m interested in ... - 🌱 I’m currently learning ... - 💞️ I’m looking to collaborate on ... - 📫 How to reach me ...",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwaseli/mwaseli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwaseli/mwaseli/issues"
+  },
+  "homepage": "https://github.com/mwaseli/mwaseli#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@types/node": "^25.8.0",
+    "@types/react": "^19.2.14",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.6",
+    "typescript": "^6.0.3"
+  }
+}
