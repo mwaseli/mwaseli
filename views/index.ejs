@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWASE AI AGENT - Image & Video Generator</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>MWASE AI</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <% if (user) { %>
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Welcome to <span class="gradient-text">MWASE AI AGENT</span></h1>
+            <p class="hero-subtitle">Your Premium AI Generation Platform</p>
+            <p class="hero-description">Generate stunning images, videos, and voiceovers with cutting-edge AI technology</p>
+            <div class="hero-buttons">
+                <% if (user) { %>
+                    <a href="/admin" class="btn btn-primary">Go to Dashboard</a>
+                <% } else { %>
+                    <a href="/login" class="btn btn-primary">Get Started</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Image Generation</h3>
+                    <p>Create stunning images from text prompts with HD, 4K, and 8K quality options</p>
+                    <ul class="feature-list">
+                        <li>Text to Image</li>
+                        <li>Image to Image</li>
+                        <li>Multiple Styles</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Generation</h3>
+                    <p>Generate videos up to 50 minutes from text with cinematic quality</p>
+                    <ul class="feature-list">
+                        <li>Text to Video</li>
+                        <li>Video to Video</li>
+                        <li>3D Mode Support</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Voice Synthesis</h3>
+                    <p>Natural-sounding voiceovers in multiple languages</p>
+                    <ul class="feature-list">
+                        <li>Multiple Voices</li>
+                        <li>8+ Languages</li>
+                        <li>HD Quality</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Video Editing</h3>
+                    <p>Advanced AI-powered video editing with professional effects</p>
+                    <ul class="feature-list">
+                        <li>Color Grading</li>
+                        <li>Stabilization</li>
+                        <li>Noise Reduction</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>3D HD Generation</h3>
+                    <p>Create professional 3D content with HDR support</p>
+                    <ul class="feature-list">
+                        <li>60 FPS Capability</li>
+                        <li>HDR Support</li>
+                        <li>Multiple Quality Levels</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Admin Dashboard</h3>
+                    <p>Complete control panel for managing generations and users</p>
+                    <ul class="feature-list">
+                        <li>User Management</li>
+                        <li>Statistics</li>
+                        <li>Content Monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About MWASE AI AGENT</h2>
+            <div class="about-content">
+                <p>MWASE AI AGENT is your premium platform for AI-powered content generation. Built with cutting-edge technology, our platform enables you to create professional-quality images, videos, and voiceovers with ease.</p>
+                <p>Whether you're a content creator, marketer, or business owner, MWASE AI AGENT provides the tools you need to bring your creative visions to life.</p>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <h3>5+</h3>
+                        <p>Generation Types</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>8K</h3>
+                        <p>Max Resolution</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>8+</h3>
+                        <p>Languages</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Availability</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MWASE AI AGENT</h4>
+                    <p>Your premium AI generation platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: mwaserobison@gmail.com</p>
+                    <p>Domain: mwaseai.io</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MWASE AI AGENT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

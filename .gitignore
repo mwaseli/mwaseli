@@ -1,0 +1,122 @@
+```
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# Logs
+*.log
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.venv-local/
+.venv3/
+.venv3-local/
+.python-version
+.mypy_cache/
+.pytest_cache/
+.tox/
+.coverage.xml
+htmlcov/
+.coverage.*
+.nox/
+.pyre/
+.pytype/
+.pytest_cache/
+.hypothesis/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.cjs
+.pnp.loader.mjs
+.next/
+.nuxt/
+.vuepress/dist/
+.cache/
+.temp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+
+# Build outputs
+target/
+.gradle/
+*.class
+*.jar
+*.war
+*.ear
+*.so
+*.dll
+*.exe
+*.out
+*.a
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Verbose logging
+*.log.*
+
+# Local configuration
+config/local.*
+config/development.*
+config/staging.*
+```

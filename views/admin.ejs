@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MWASE AI AGENT</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>MWASE AI</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#image-gen" class="nav-item">
+                <i class="fas fa-image"></i>
+                <span>Image Generation</span>
+            </a>
+            <a href="#video-gen" class="nav-item">
+                <i class="fas fa-video"></i>
+                <span>Video Generation</span>
+            </a>
+            <a href="#voice-gen" class="nav-item">
+                <i class="fas fa-microphone"></i>
+                <span>Voice Synthesis</span>
+            </a>
+            <a href="#3d-gen" class="nav-item">
+                <i class="fas fa-cube"></i>
+                <span>3D Generation</span>
+            </a>
+            <a href="#editing" class="nav-item">
+                <i class="fas fa-film"></i>
+                <span>Video Editing</span>
+            </a>
+            <a href="/" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="/logout" class="nav-item logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Admin Dashboard</h1>
+            <div class="user-info">
+                <span>Welcome, <strong><%= user.username %></strong></span>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon image-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.totalImages %></h3>
+                        <p>Total Images</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon video-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.totalVideos %></h3>
+                        <p>Total Videos</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon voice-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.totalVoices %></h3>
+                        <p>Total Voices</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon users-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3><%= stats.totalUsers %></h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+                <button class="action-btn" onclick="showSection('image-gen')">
+                    <i class="fas fa-image"></i>
+                    <span>Generate Image</span>
+                </button>
+                <button class="action-btn" onclick="showSection('video-gen')">
+                    <i class="fas fa-video"></i>
+                    <span>Generate Video</span>
+                </button>
+                <button class="action-btn" onclick="showSection('voice-gen')">
+                    <i class="fas fa-microphone"></i>
+                    <span>Generate Voice</span>
+                </button>
+                <button class="action-btn" onclick="showSection('3d-gen')">
+                    <i class="fas fa-cube"></i>
+                    <span>Generate 3D</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Image Generation Section -->
+        <section id="image-gen" class="generation-section">
+            <h2><i class="fas fa-image"></i> Image Generation</h2>
+            <div class="generation-form">
+                <form id="imageForm">
+                    <div class="form-group">
+                        <label>Prompt</label>
+                        <textarea id="imagePrompt" rows="4" placeholder="Describe the image you want to generate..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Quality</label>
+                            <select id="imageQuality">
+                                <option value="HD">HD</option>
+                                <option value="4K">4K Ultra HD</option>
+                                <option value="8K">8K Resolution</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Style</label>
+                            <select id="imageStyle">
+                                <option value="realistic">Realistic</option>
+                                <option value="artistic">Artistic</option>
+                                <option value="anime">Anime</option>
+                                <option value="3d">3D Render</option>
+                                <option value="painting">Painting</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-magic"></i> Generate Image
+                    </button>
+                </form>
+                <div id="imageResult" class="generation-result"></div>
+            </div>
+        </section>
+
+        <!-- Video Generation Section -->
+        <section id="video-gen" class="generation-section">
+            <h2><i class="fas fa-video"></i> Video Generation</h2>
+            <div class="generation-form">
+                <form id="videoForm">
+                    <div class="form-group">
+                        <label>Prompt</label>
+                        <textarea id="videoPrompt" rows="4" placeholder="Describe the video you want to generate..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Quality</label>
+                            <select id="videoQuality">
+                                <option value="HD">HD (720p)</option>
+                                <option value="FullHD">Full HD (1080p)</option>
+                                <option value="4K">4K</option>
+                                <option value="8K">8K</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Style</label>
+                            <select id="videoStyle">
+                                <option value="cinematic">Cinematic</option>
+                                <option value="documentary">Documentary</option>
+                                <option value="animation">Animation</option>
+                                <option value="3d-animation">3D Animation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Duration (minutes)</label>
+                            <input type="number" id="videoDuration" min="1" max="50" value="1">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-video"></i> Generate Video
+                    </button>
+                </form>
+                <div id="videoResult" class="generation-result"></div>
+            </div>
+        </section>
+
+        <!-- Voice Generation Section -->
+        <section id="voice-gen" class="generation-section">
+            <h2><i class="fas fa-microphone"></i> Voice Synthesis</h2>
+            <div class="generation-form">
+                <form id="voiceForm">
+                    <div class="form-group">
+                        <label>Text</label>
+                        <textarea id="voiceText" rows="4" placeholder="Enter text to convert to speech..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Voice</label>
+                            <select id="voiceType">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="child">Child</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Language</label>
+                            <select id="voiceLanguage">
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="it">Italian</option>
+                                <option value="pt">Portuguese</option>
+                                <option value="zh">Chinese</option>
+                                <option value="ja">Japanese</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Quality</label>
+                            <select id="voiceQuality">
+                                <option value="standard">Standard</option>
+                                <option value="hd">HD</option>
+                                <option value="ultra-hd">Ultra HD</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-volume-up"></i> Generate Voice
+                    </button>
+                </form>
+                <div id="voiceResult" class="generation-result"></div>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="recent-activity">
+            <h2>Recent Generations</h2>
+            <div class="activity-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (recentGenerations.length === 0) { %>
+                            <tr>
+                                <td colspan="4" style="text-align: center;">No generations yet</td>
+                            </tr>
+                        <% } else { %>
+                            <% recentGenerations.forEach(gen => { %>
+                                <tr>
+                                    <td>
+                                        <i class="fas fa-<%= gen.type === 'image' ? 'image' : gen.type === 'video' ? 'video' : 'microphone' %>"></i>
+                                        <%= gen.type.charAt(0).toUpperCase() + gen.type.slice(1) %>
+                                    </td>
+                                    <td><%= gen.user %></td>
+                                    <td><span class="status-badge status-<%= gen.status %>"><%= gen.status %></span></td>
+                                    <td><%= new Date(gen.createdAt).toLocaleString() %></td>
+                                </tr>
+                            <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>
