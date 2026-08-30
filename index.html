@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free HTML VPS Setup (No Payment)</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121a30;
+      --text: #e9efff;
+      --muted: #b7c3e6;
+      --accent: #6ea8fe;
+      --ok: #7ce38b;
+      --warn: #ffd166;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0b1020, #0f1830);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 24px; }
+    .card {
+      background: var(--card);
+      border: 1px solid #223055;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    h1, h2 { margin-top: 0; }
+    a { color: var(--accent); }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #1d2b4f;
+      border: 1px solid #2f4576;
+      color: var(--muted);
+      margin-right: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    ul { margin-top: 8px; }
+    .ok { color: var(--ok); font-weight: bold; }
+    .warn { color: var(--warn); font-weight: bold; }
+    code {
+      background: #0a1228;
+      border: 1px solid #1f2e57;
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: #cde0ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Free HTML VPS Setup (No Payment Needed)</h1>
+      <p>Use free static hosting to keep your web interface online 24/7 without adding a credit card.</p>
+      <span class="badge">GitHub Pages</span>
+      <span class="badge">Netlify Free</span>
+      <span class="badge">Cloudflare Pages Free</span>
+    </div>
+
+    <div class="card">
+      <h2>1) Prepare files</h2>
+      <ul>
+        <li>Create your HTML app files: <code>index.html</code>, <code>style.css</code>, <code>app.js</code> (optional).</li>
+        <li>Push them to a GitHub repository.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>2) Deploy for free</h2>
+      <h3>Option A: GitHub Pages</h3>
+      <ol>
+        <li>Go to your repo → <strong>Settings</strong> → <strong>Pages</strong>.</li>
+        <li>Select branch: <code>main</code>, folder: <code>/(root)</code>.</li>
+        <li>Save and wait 1-2 minutes.</li>
+        <li>Your app URL appears (e.g. <code>https://username.github.io/repo</code>).</li>
+      </ol>
+
+      <h3>Option B: Netlify (Free)</h3>
+      <ol>
+        <li>Sign in with GitHub at <a href="https://app.netlify.com" target="_blank" rel="noreferrer">app.netlify.com</a>.</li>
+        <li>Click <strong>Add new site</strong> → <strong>Import existing project</strong>.</li>
+        <li>Select repo and deploy.</li>
+      </ol>
+
+      <h3>Option C: Cloudflare Pages (Free)</h3>
+      <ol>
+        <li>Open <a href="https://dash.cloudflare.com" target="_blank" rel="noreferrer">dash.cloudflare.com</a>.</li>
+        <li>Go to <strong>Workers &amp; Pages</strong> → <strong>Create</strong> → <strong>Pages</strong>.</li>
+        <li>Connect GitHub repo and deploy defaults.</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>3) Keep it stable</h2>
+      <ul>
+        <li>Compress images and JS to improve load speed.</li>
+        <li>Use uptime monitor tools to track availability.</li>
+        <li>Use CDN caching headers for static assets.</li>
+      </ul>
+      <p class="ok">✅ Result: Free online hosting for your HTML app.</p>
+    </div>
+
+    <div class="card">
+      <h2>MetaTrader note</h2>
+      <p class="warn">⚠️ MT4/MT5 trading terminals and EAs require a Windows runtime and are usually not available on truly free permanent VPS plans.</p>
+      <p>If you need only a web dashboard or status page, this free HTML hosting approach works well.</p>
+    </div>
+  </div>
+</body>
+</html>
